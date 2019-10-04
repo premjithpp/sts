@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.pojo.AdminCredentials;
@@ -11,6 +12,7 @@ import com.example.demo.repo.TrainerRepo;
 import com.example.demo.service.AdminService;
 import com.example.demo.service.TraineeService;
 import com.example.demo.service.TrainerService;
+@EnableEurekaClient
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class TraineeController {
@@ -21,12 +23,12 @@ public class TraineeController {
 	@Autowired
 	AdminService adminService;
 	
-	@RequestMapping(method = RequestMethod.POST,value = "/trainee/signup")
+	@RequestMapping(method = RequestMethod.POST,value = "/trainee-signup")
 	  public void postTrainee(@RequestBody TraineeDetails trainee) {
 	    service.postTrainee(trainee);
 	  }
 	
-	@RequestMapping(method = RequestMethod.POST,value = "/trainer/signup")
+	@RequestMapping(method = RequestMethod.POST,value = "/trainer-signup")
 	  public void postTrainer(@RequestBody TrainerDetails trainer) {
 	    trainerService.postTrainer(trainer);
 	    
